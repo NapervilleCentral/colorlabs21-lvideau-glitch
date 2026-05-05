@@ -12,7 +12,15 @@ public class FinalProj17
 {
     public static void main(String[] args)
     {
-      
+        Picture apic = new Picture("images\\The starry night.jpg");
+        Picture canvas = new Picture("images\\Big.jpg");
+        Pixel[] pixels;
+        Pixel[] bixels;
+        pixels = apic.getPixels();
+        bixels = canvas.getPixels();
+        copytoCanvas(apic, canvas, 1600, 1276);
+        mirrorVertical(apic);
+        copytoCanvas(apic, canvas, 0, 0);
     }
     public static void mirrorVertical(Picture apic){
         int width = apic.getWidth();
@@ -40,5 +48,6 @@ public class FinalProj17
                 
             }
         }
+        target.write("images/Canvas.jpg");
     }
 }
