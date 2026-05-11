@@ -20,11 +20,13 @@ public class FinalProj17
         copytoCanvas(apic, canvas, 1610, 1277);
         mirrorVertical(apic);
         copytoCanvas(apic, canvas, 0, 0);
+        //hall(apic);
         apic = reset();
         SheparFairey(apic);
         copytoCanvas(apic, canvas, 0, 1277);
         apic = reset();
         blackwhite(apic);
+        copytoCanvas(apic, canvas, 1610, 0);
     }
     public static void mirrorVertical(Picture apic){
         int width = apic.getWidth();
@@ -105,10 +107,15 @@ public class FinalProj17
                 int total4 = Pixel4.getRed() + Pixel4.getGreen() + Pixel4.getBlue();
                 double pureTotal = total1 + total2 + total3 + total4;
                 double randomDouble = Math.random();
-                double target = (255 * 3 * 2);
-                double blockValue = pureTotal * randomDouble;
+                double target = (255 * 3 * 4 * randomDouble);
+                double blockValue = pureTotal;
+                //if (x < 100){
+                //    System.out.println("" +  target + " " + blockValue);
+                //}
                 if (blockValue > target){
                     color = 255;
+                } else {
+                    color = 0;
                 }
                 Pixel1.setRed(color);
                 Pixel1.setGreen(color);
@@ -124,7 +131,27 @@ public class FinalProj17
                 Pixel4.setBlue(color);
             }
         }
-        apic.explore();
+    }
+    public static void hall(Picture apic){
+        Picture can = new Picture("images\\7inX95in.jpg");
+        int width = apic.getWidth();
+        int height = apic.getHeight();
+        int centerWidth = width/2;
+        int centerHeight = height/2;
+        int a = 2;
+        while(height >= 4){
+            for (int y = 0; y < 1265; y+=a){
+                for (int x = 0; x < apic.getWidth(); x+=a){
+                    System.out.println(" "+ x + " " + y + " " + (centerWidth - (width / (a*2)) + x) + " " + (centerHeight - (height / (a*2)) + x));
+                    Pixel Pixel1 = can.getPixel((centerWidth - (width / (a*2)) + x), (centerHeight - (height / (a*2)) + x));
+                    Pixel Pixel2 = apic.getPixel(x, y);
+                    
+                    Pixel1.setColor(Pixel2.getColor());
+                }
+            }
+            a *= 2;
+        }
+        can.explore();
     }
     public static Picture reset(){
         return new Picture("images\\The starry night.jpg");
