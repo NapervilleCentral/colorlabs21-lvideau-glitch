@@ -20,13 +20,30 @@ public class FinalProj17
         copytoCanvas(apic, canvas, 1610, 1277);
         mirrorVertical(apic);
         copytoCanvas(apic, canvas, 0, 0);
-        //hall(apic);
+        hall(apic);
+        copytoCanvas(apic, canvas, 3220, 0);
         apic = reset();
         SheparFairey(apic);
-        copytoCanvas(apic, canvas, 0, 1277);
+        copytoCanvas(apic, canvas, 1610, 0);
         apic = reset();
         blackwhite(apic);
-        copytoCanvas(apic, canvas, 1610, 0);
+        copytoCanvas(apic, canvas, 0, 1277);
+        apic = reset();
+        greyScale(apic);
+        copytoCanvas(apic, canvas, 3220, 1277);
+    }
+    public static void greyScale(Picture apic){
+        Pixel[] pixels = apic.getPixels();
+        for(Pixel spot : pixels){
+            int red;
+            int blue;
+            int green;
+            int total = spot.getRed() + spot.getGreen() + spot.getBlue();
+            int value = total/3;
+            spot.setRed(value);
+            spot.setGreen(value);
+            spot.setBlue(value);
+        }
     }
     public static void mirrorVertical(Picture apic){
         int width = apic.getWidth();
@@ -139,11 +156,11 @@ public class FinalProj17
         int centerWidth = width/2;
         int centerHeight = height/2;
         int a = 2;
-        while(height >= 4){
-            for (int y = 0; y < 1265; y+=a){
-                for (int x = 0; x < apic.getWidth(); x+=a){
-                    System.out.println(" "+ x + " " + y + " " + (centerWidth - (width / (a*2)) + x) + " " + (centerHeight - (height / (a*2)) + x));
-                    Pixel Pixel1 = can.getPixel((centerWidth - (width / (a*2)) + x), (centerHeight - (height / (a*2)) + x));
+        while((height/a) >= 4){
+            for (int y = 0; y < height; y+=a){
+                for (int x = 0; x < width; x+=a){
+                    //System.out.println(" "+ x + " " + y + " " + (centerWidth - (width / (a*2)) + (x/2)) + " " + (centerHeight - (height / (a*2)) + (y/2)));
+                    Pixel Pixel1 = can.getPixel((centerWidth - (width / (a*2)) + (x/a)), (centerHeight - (height / (a*2)) + (y/a)));
                     Pixel Pixel2 = apic.getPixel(x, y);
                     
                     Pixel1.setColor(Pixel2.getColor());
@@ -151,7 +168,13 @@ public class FinalProj17
             }
             a *= 2;
         }
-        can.explore();
+        for (int y = (centerHeight - (height / 4)); y < (centerHeight + (height / 4)); y+=1){
+            for (int x = (centerWidth - (width / 4)); x < (centerWidth + (width / 4)); x+=1){
+                Pixel Pixel1 = apic.getPixel(x, y);
+                Pixel Pixel2 = can.getPixel(x, y);
+                Pixel1.setColor(Pixel2.getColor());
+            }
+        }
     }
     public static Picture reset(){
         return new Picture("images\\The starry night.jpg");
