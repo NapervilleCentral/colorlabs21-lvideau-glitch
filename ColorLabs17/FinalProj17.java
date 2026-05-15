@@ -24,9 +24,11 @@ public class FinalProj17
         copytoCanvas(apic, canvas, 3220, 0);
         apic = reset();
         SheparFairey(apic);
+        apic.write("images/ShepardMadness.jpg");
         copytoCanvas(apic, canvas, 1610, 0);
         apic = reset();
         blackwhite(apic);
+        apic.write("images/pixelsBW.jpg");
         copytoCanvas(apic, canvas, 0, 1277);
         apic = reset();
         greyScale(apic);

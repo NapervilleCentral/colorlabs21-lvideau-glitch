@@ -4,6 +4,23 @@ Tell the reader (someone who does not know anything about this project)
 all he/she needs to know. The comments should usually include at least:
 ------------------------------------------------------------------------
 Ludovic Videau
+PROJECT TITLE: Poster Project
+PURPOSE OF PROJECT: Assignment
+VERSION or DATE: 5/15/2026
+HOW TO START THIS PROJECT: Run the file
+AUTHORS: Ludovic Videau
+USER INSTRUCTIONS : Look at the nice poster I created
+
+Low middle : The original image (The Starry Night, by Van Goth)
+Upper left : Mirrored image (lengthwise mirroring)
+Upper middle : Shepard Ferrey transformation from five colors, equal intervals
+Upper right : Mirror image, but repeated to four pixels
+Low left : Black and white image, with every pixel randomized
+Low right : Greyscale version, according to pixel brightness
+
+
+
+
 PROJECT TITLE: Shepard Ferrey
 PURPOSE OF PROJECT: Assignment
 VERSION or DATE: Today
